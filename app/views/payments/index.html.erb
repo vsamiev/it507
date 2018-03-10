@@ -1,0 +1,84 @@
+<%= content_for :header, 'Transactions' %>
+
+<div class="box">
+    <div class="box-body">
+        <%= form_for_filterrific @filterrific do |f| %>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.label 'Min balance' %>
+                        <%= f.text_field(:balance_gte, class: 'filterrific-periodically-observed form-control' ) %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.label 'Max balance' %>
+                        <%= f.text_field(:balance_lte, class: 'filterrific-periodically-observed form-control' ) %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.label 'State' %>
+                        <%= f.select(
+                            :state_by,
+                            us_states,
+                            { include_blank: '- Any -' },
+                            class: 'form-control' )
+                        %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.label 'Location' %>
+                        <%= f.select(
+                            :location_by,
+                            Building.all.map{|e| [e.name, e.id]},
+                            { include_blank: '- Any -' },
+                            class: 'form-control' )
+                        %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.label 'Paid By Corporate Account' %>
+                        <%= f.select(
+                            :corporate_by,
+                            [['Yes', 'Yes'], ['No', 'No']],
+                            { include_blank: '- Any -' },
+                            class: 'form-control' )
+                        %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Guset Name</th>
+                            <th>State</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Room #</th>
+                            <th>Location</th>
+                            <th>Balance</th>
+                            <th class="text-center">Paid By Corporate Account</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                        <%= render(partial: 'payments/list', locals: { payments: @payments }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= javascript_include_tag 'payments' %>

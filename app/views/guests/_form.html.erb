@@ -1,0 +1,19 @@
+<%= form_with(model: guest, local: true) do |form| %>
+<div class="box-body">
+    <div class="form-group">
+        <%= form.label :f_name, 'First Name' %>
+        <%= form.text_field :f_name, placeholder: "Enter first name", class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :l_name, 'Last Name' %>
+        <%= form.text_field :l_name, placeholder: "Enter last name", class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :state, 'State' %>
+        <%= form.select(:state, us_states, {prompt: 'Select State'}, {class: 'form-control'}) %>
+    </div>
+</div>
+<div class="box-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<% end %>

@@ -1,0 +1,53 @@
+<%= form_with(model: booking, local: true) do |form| %>
+<div class="box-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <%= form.label :check_in %>
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input name="booking[check_in]" type="text" class="form-control pull-right datepicker" id="booking_check_in" value="<%= booking.check_in %>">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <%= form.label :check_out %>
+                <div class="input-group date">
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input name="booking[check_out]" type="text" class="form-control pull-right datepicker" id="booking_check_out value="<%= booking.check_out %>">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <%= form.label :guest_id, 'Guest' %>
+                <%= form.select(:guest_id, Guest.all.map{|e| [e.full_name, e.id]}, {prompt: 'Select Guest'}, {class: 'form-control'}) %>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <%= form.label :room_id, 'Room' %>
+                <%= form.select(:room_id, Room.all.map{|e| [e.number, e.id]}, {prompt: 'Select Room'}, {class: 'form-control'}) %>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <%= form.label :manager_id, 'Manager' %>
+                <%= form.select(:manager_id, Manager.all.map{|e| [e.name, e.id]}, {prompt: 'Select Manager'}, {class: 'form-control'}) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<% end %>

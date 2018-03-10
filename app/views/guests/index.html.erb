@@ -1,0 +1,46 @@
+<%= content_for :header, 'Guests' %>
+<% if notice.present? %>
+    <div class="callout callout-success">
+        <%= notice %>
+    </div>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3></h3>
+                <div class="box-tools">
+                    <%= link_to new_guest_path do %>
+                    <button class="btn btn-default btn-sm">
+                        Add Guest
+                    </button>
+                    <% end %>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody><tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>State</th>
+                    </tr>
+                    <% @guests.each do |guest| %>
+                    <tr>
+                        <td><%= guest.id %></td>
+                        <td><%= "#{guest.f_name} #{guest.l_name}" %></td>
+                        <td><%= guest.state %></td>
+                        <td class='text-right'>
+                            <%= link_to edit_guest_path(guest) do %>
+                            <button class="btn btn-primary btn-sm">
+                                Edit
+                            </button>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

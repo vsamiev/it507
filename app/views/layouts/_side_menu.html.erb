@@ -1,0 +1,40 @@
+<ul class="sidebar-menu" data-widget="tree">
+    <li class="header">MAIN MENU</li>
+    <!-- <li class="active"> -->
+    <li>
+        <%= link_to buildings_path do %>
+            <i class="fa fa-building-o"></i>
+            <span>Locations</span>
+        <% end %>
+    </li>
+    <li>
+        <%= link_to rooms_path do %>
+            <i class="fa fa-bed"></i>
+            <span>Rooms</span>
+        <% end %>
+    </li>
+    <li>
+        <%= link_to managers_path do %>
+            <i class="fa fa-user"></i>
+            <span>Managers</span>
+        <% end %>
+    </li>
+    <li>
+        <%= link_to guests_path do %>
+            <i class="fa fa-users"></i>
+            <span>Guests</span>
+        <% end %>
+    </li>
+    <li>
+        <%= link_to bookings_path do %>
+            <i class="fa fa-money"></i>
+            <span>Bookings</span>
+        <% end %>
+    </li>
+    <li>
+        <%= link_to '/payments' do %>
+            <i class="fa fa-money"></i>
+            <span>Payments</span>
+        <% end %>
+    </li>
+</ul>

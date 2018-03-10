@@ -1,0 +1,13 @@
+<% payments.each do |payment| %>
+<tr>
+    <td><%= payment.id %></td>
+    <td><%= payment.booking.guest.full_name %></td>
+    <td><%= payment.booking.guest.state %></td>
+    <td><%= payment.booking.check_in %></td>
+    <td><%= payment.booking.check_out %></td>
+    <td><%= payment.booking.room.number %></td>
+    <td><%= payment.booking.room.building.name %></td>
+    <td><%= number_to_currency(payment.balance) %></td>
+    <td class="text-center"><%= payment.is_corporate %></td>
+</tr>
+<% end %>

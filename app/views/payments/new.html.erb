@@ -1,0 +1,24 @@
+<%= content_for :header, 'Transactions' %>
+<% if @payment.errors.any? %>
+<div class="callout callout-danger">
+    <ul>
+        <% @payment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">New Payment</h3>
+    </div>
+    <%= render 'form', payment: @payment %>
+</div>
+
+
+<%= link_to bookings_path do %>
+  <button class="btn btn-default btn-sm">
+      Back
+  </button>
+<% end %>

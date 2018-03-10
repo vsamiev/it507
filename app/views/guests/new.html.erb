@@ -1,0 +1,24 @@
+<%= content_for :header, 'Guests' %>
+<% if @guest.errors.any? %>
+<div class="callout callout-danger">
+    <ul>
+        <% @guest.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">New Guest</h3>
+    </div>
+    <%= render 'form', guest: @guest %>
+</div>
+
+
+<%= link_to guests_path do %>
+  <button class="btn btn-default btn-sm">
+      Back
+  </button>
+<% end %>

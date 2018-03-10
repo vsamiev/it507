@@ -1,0 +1,29 @@
+<%= content_for :header, 'Managers' %>
+<% if notice.present? %>
+    <div class="callout callout-success">
+        <%= notice %>
+    </div>
+<% end %>
+
+<% if @manager.errors.any? %>
+<div class="callout callout-danger">
+    <ul>
+        <% @manager.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">New Manager</h3>
+    </div>
+    <%= render 'form', manager: @manager %>
+</div>
+
+<%= link_to managers_path do %>
+  <button class="btn btn-default btn-sm">
+      Back
+  </button>
+<% end %>

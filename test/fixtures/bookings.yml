@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_in: 2018-03-10
+  check_out: 2018-03-10
+  guest: one
+  room: one
+  manager: one
+
+two:
+  check_in: 2018-03-10
+  check_out: 2018-03-10
+  guest: two
+  room: two
+  manager: two

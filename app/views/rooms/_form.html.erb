@@ -1,0 +1,15 @@
+<%= form_with(model: room, local: true) do |form| %>
+<div class="box-body">
+    <div class="form-group">
+        <%= form.label :number %>
+        <%= form.text_field :number, placeholder: "Enter room number", class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= form.label :building_id, 'Location' %>
+        <%= form.select(:building_id, Building.all.map{|e| [e.name, e.id]}, {prompt: 'Select Location'}, {class: 'form-control'}) %>
+    </div>
+</div>
+<div class="box-footer">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<% end %>

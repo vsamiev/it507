@@ -1,0 +1,69 @@
+<%= content_for :header, 'Bookings' %>
+<% if notice.present? %>
+    <div class="callout callout-success">
+        <%= notice %>
+    </div>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3></h3>
+                <div class="box-tools">
+                    <%= link_to new_booking_path do %>
+                    <button class="btn btn-default btn-sm">
+                        Add Booking
+                    </button>
+                    <% end %>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody><tr>
+                        <th>ID</th>
+                        <th>Guset name</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Room #</th>
+                        <th>Location</th>
+                        <th>Manager</th>
+                        <th class="text-center">Payment</th>
+                        <th></th>
+                    </tr>
+                    <% @bookings.each do |booking| %>
+                    <tr>
+                      <td><%= booking.id %></td>
+                      <td><%= booking.guest.full_name %></td>
+                      <td><%= booking.check_in %></td>
+                      <td><%= booking.check_out %></td>
+                      <td><%= booking.room.number %></td>
+                      <td><%= booking.room.building.name %></td>
+                      <td><%= booking.manager.name %></td>
+                      <td class="text-center">
+                        <% if booking.payment.present? %>
+                          <i class="fa fa-check-square text-aqua"></i>
+                        <% else %>
+                            <%= link_to new_payment_path(@payment, { booking_id: booking.id }) do %>
+                            <button class="btn btn-warning btn-sm">
+                                Make Payment
+                            </button>
+                            <% end %>
+                        <% end %>
+                      </td>
+
+                        <td class='text-right'>
+                            <%= link_to edit_booking_path(booking) do %>
+                            <button class="btn btn-primary btn-sm">
+                                Edit
+                            </button>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

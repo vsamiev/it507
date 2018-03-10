@@ -1,0 +1,49 @@
+<%= content_for :header, 'Locations' %>
+<% if notice.present? %>
+    <div class="callout callout-success">
+        <%= notice %>
+    </div>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3></h3>
+                <div class="box-tools">
+                    <%= link_to new_building_path do %>
+                    <button class="btn btn-default btn-sm">
+                        Add Location
+                    </button>
+                    <% end %>
+                </div>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    <tbody><tr>
+                        <th>ID</th>
+                        <th>Location</th>
+                        <th># Rooms</th>
+                        <th># Guests</th>
+                        <th></th>
+                    </tr>
+                    <% @buildings.each do |building| %>
+                    <tr>
+                        <td><%= building.id %></td>
+                        <td><%= building.name %></td>
+                        <td><%= building.rooms.count %></td>
+                        <td>2</td>
+                        <td class='text-right'>
+                            <%= link_to edit_building_path(building) do %>
+                            <button class="btn btn-primary btn-sm">
+                                Edit
+                            </button>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

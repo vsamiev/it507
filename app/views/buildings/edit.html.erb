@@ -1,0 +1,30 @@
+<%= content_for :header, 'Locations' %>
+<% if notice.present? %>
+    <div class="callout callout-success">
+        <%= notice %>
+    </div>
+<% end %>
+
+<% if @building.errors.any? %>
+<div class="callout callout-danger">
+    <ul>
+        <% @building.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Editing Location: <%= @building.name %></h3>
+    </div>
+    <%= render 'form', building: @building %>
+</div>
+
+
+<%= link_to buildings_path do %>
+  <button class="btn btn-default btn-sm">
+      Back
+  </button>
+<% end %>
