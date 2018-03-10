@@ -1,0 +1,30 @@
+<% bookings.each do |booking| %>
+<tr>
+    <td><%= booking.id %></td>
+    <td><%= booking.guest.full_name %></td>
+    <td><%= booking.check_in %></td>
+    <td><%= booking.check_out %></td>
+    <td><%= booking.room.number %></td>
+    <td><%= booking.room.building.name %></td>
+    <td><%= booking.manager.name %></td>
+    <td class="text-center">
+        <% if booking.payment.present? %>
+        <i class="fa fa-check-square text-aqua"></i>
+        <% else %>
+        <%= link_to new_payment_path(payment, { booking_id: booking.id }) do %>
+        <button class="btn btn-warning btn-sm">
+            Make Payment
+        </button>
+        <% end %>
+        <% end %>
+    </td>
+
+    <td class='text-right'>
+        <%= link_to edit_booking_path(booking) do %>
+        <button class="btn btn-primary btn-sm">
+            Edit
+        </button>
+        <% end %>
+    </td>
+</tr>
+<% end %>

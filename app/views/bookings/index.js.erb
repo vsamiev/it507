@@ -1,0 +1,2 @@
+<% js = escape_javascript(render(partial: 'bookings/list', locals: { bookings: @bookings, payment: @payment })) %>
+$("#results").html("<%= js %>");

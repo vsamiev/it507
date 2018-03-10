@@ -7,6 +7,36 @@ class Booking < ApplicationRecord
 
   validates_presence_of :check_in, :check_out
 
+  filterrific(
+    available_filters: [
+      :is_paid,
+      :manager_by,
+      :state_by,
+      :location_by,
+    ]
+    )
+  scope :date_desc, -> { order("bookings.created_at desc") }
+
+  scope :is_paid, lambda { |is_paid|
+    if is_paid == 'Yes'
+      date_desc.joins(:payment)
+    else
+      date_desc.where.not(id: Payment.all.pluck(:booking_id))
+    end
+  }
+
+  scope :manager_by, lambda { |manager|
+    date_desc.joins(:manager).where('managers.id = :manager', manager: manager)
+  }
+
+  scope :state_by, lambda { |state|
+    date_desc.joins(:guest).where('guests.state = :state', state: state)
+  }
+
+  scope :location_by, lambda { |location|
+    date_desc.joins(room: :building).where('buildings.id = :location', location: location)
+  }
+
   def check_in=(value)
     if value.present?
       date_parts = value.split('/')

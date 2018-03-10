@@ -2,8 +2,17 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all.page(params[:page] || 1)
     @payment = Payment.new
+
+    @filterrific = initialize_filterrific(
+      Booking,
+      params[:filterrific]
+    ) or return
+    @bookings = @filterrific.find
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
