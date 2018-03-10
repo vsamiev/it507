@@ -2,7 +2,7 @@ class GuestsController < ApplicationController
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
 
   def index
-    @guests = Guest.all
+    @guests = Guest.all.page(params[:page] || 1)
   end
 
   def new

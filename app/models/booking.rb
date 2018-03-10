@@ -1,4 +1,5 @@
 class Booking < ApplicationRecord
+  paginates_per 20
   belongs_to :guest
   belongs_to :room
   belongs_to :manager

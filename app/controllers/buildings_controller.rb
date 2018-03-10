@@ -2,7 +2,7 @@ class BuildingsController < ApplicationController
   before_action :set_building, only: [:show, :edit, :update, :destroy]
 
   def index
-    @buildings = Building.all
+    @buildings = Building.all.page(params[:page] || 1)
   end
 
   def new

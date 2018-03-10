@@ -32,7 +32,7 @@
                         <td><%= building.id %></td>
                         <td><%= building.name %></td>
                         <td><%= building.rooms.count %></td>
-                        <td>2</td>
+                        <td><%= Booking.joins(room: :building).where("buildings.id = #{building.id}").count %></td>
                         <td class='text-right'>
                             <%= link_to edit_building_path(building) do %>
                             <button class="btn btn-primary btn-sm">
@@ -44,6 +44,9 @@
                     <% end %>
                 </tbody>
             </table>
+        </div>
+        <div class="box-footer clearfix">
+            <%= paginate @buildings, theme: 'twitter-bootstrap-3', pagination_class: "pagination-sm pull-right" %>
         </div>
     </div>
 </div>

@@ -1,47 +1,25 @@
 <div class="row">
-    <div class="col-md-offset-1 col-md-2 col-sm-6 col-xs-12">
+    <div class="col-md-2 col-sm-6 col-xs-12">
         <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-usd"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Total Balance</span>
-                <span class="info-box-number">$2,379,454</span>
+                <span class="info-box-number"><%= number_to_currency(Payment.all.sum(:balance)) %></span>
             </div>
         </div>
     </div>
+    <% Building.all.each do |building| %>
     <div class="col-md-2 col-sm-6 col-xs-12">
         <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-building-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">WEST Guests</span>
-                <span class="info-box-number">20</span>
+                <span class="info-box-text"><%= building.name %></span>
+                <span class="info-box-text">guests</span>
+                <span class="info-box-number">
+                    <%= Booking.joins(room: :building).where("buildings.id = #{building.id}").count %>
+                </span>
             </div>
         </div>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-building-o"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">NORTH Guests</span>
-                <span class="info-box-number">20</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-building-o"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">RED Guests</span>
-                <span class="info-box-number">20</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-purple"><i class="fa fa-building-o"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">NEW Guests</span>
-                <span class="info-box-number">20</span>
-            </div>
-        </div>
-    </div>
+    <% end %>
 </div>

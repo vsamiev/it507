@@ -1,8 +1,8 @@
 <%= content_for :header, 'Bookings' %>
 <% if notice.present? %>
-    <div class="callout callout-success">
-        <%= notice %>
-    </div>
+<div class="callout callout-success">
+    <%= notice %>
+</div>
 <% end %>
 
 <div class="row">
@@ -33,24 +33,24 @@
                     </tr>
                     <% @bookings.each do |booking| %>
                     <tr>
-                      <td><%= booking.id %></td>
-                      <td><%= booking.guest.full_name %></td>
-                      <td><%= booking.check_in %></td>
-                      <td><%= booking.check_out %></td>
-                      <td><%= booking.room.number %></td>
-                      <td><%= booking.room.building.name %></td>
-                      <td><%= booking.manager.name %></td>
-                      <td class="text-center">
-                        <% if booking.payment.present? %>
-                          <i class="fa fa-check-square text-aqua"></i>
-                        <% else %>
+                        <td><%= booking.id %></td>
+                        <td><%= booking.guest.full_name %></td>
+                        <td><%= booking.check_in %></td>
+                        <td><%= booking.check_out %></td>
+                        <td><%= booking.room.number %></td>
+                        <td><%= booking.room.building.name %></td>
+                        <td><%= booking.manager.name %></td>
+                        <td class="text-center">
+                            <% if booking.payment.present? %>
+                            <i class="fa fa-check-square text-aqua"></i>
+                            <% else %>
                             <%= link_to new_payment_path(@payment, { booking_id: booking.id }) do %>
                             <button class="btn btn-warning btn-sm">
                                 Make Payment
                             </button>
                             <% end %>
-                        <% end %>
-                      </td>
+                            <% end %>
+                        </td>
 
                         <td class='text-right'>
                             <%= link_to edit_booking_path(booking) do %>
@@ -64,6 +64,8 @@
                 </tbody>
             </table>
         </div>
+        <div class="box-footer clearfix">
+            <%= paginate @bookings, theme: 'twitter-bootstrap-3', pagination_class: "pagination-sm pull-right" %>
+        </div>
     </div>
 </div>
-

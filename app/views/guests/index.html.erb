@@ -1,8 +1,8 @@
 <%= content_for :header, 'Guests' %>
 <% if notice.present? %>
-    <div class="callout callout-success">
-        <%= notice %>
-    </div>
+<div class="callout callout-success">
+    <%= notice %>
+</div>
 <% end %>
 
 <div class="row">
@@ -41,6 +41,9 @@
                     <% end %>
                 </tbody>
             </table>
+        </div>
+        <div class="box-footer clearfix">
+            <%= paginate @guests, theme: 'twitter-bootstrap-3', pagination_class: "pagination-sm pull-right" %>
         </div>
     </div>
 </div>

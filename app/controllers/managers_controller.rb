@@ -2,7 +2,7 @@ class ManagersController < ApplicationController
   before_action :set_manager, only: [:show, :edit, :update, :destroy]
 
   def index
-    @managers = Manager.all
+    @managers = Manager.all.page(params[:page] || 1)
   end
 
   def new
